@@ -17,6 +17,7 @@
     --teal:#9f111b;
     --cyan:#d51f2b;
     --gold:#b88935;
+    --light-gold:#f3e5ab;
     --red:#9f111b;
     --green:#15945d;
     --white:#fff;
@@ -192,7 +193,7 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     justify-content:center;
     gap:10px;
     padding:12px;
-    transition:.25s ease;
+    transition:.3s ease;
     position:relative;
     overflow:hidden;
 }
@@ -206,10 +207,6 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     top:-70px;left:-50px;
 }
 
-.contact:hover{
-    transform:translateY(-4px);
-}
-
 .contact.call{
     background:linear-gradient(135deg,#111111,#a80f1a);
     box-shadow:0 12px 26px rgba(10,52,80,.22);
@@ -218,6 +215,32 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
 .contact.whatsapp{
     background:linear-gradient(135deg,#99151c,#c51d29);
     box-shadow:0 12px 26px rgba(14,149,98,.20);
+}
+
+/* تأثير الذهبي الفاتح عند الوقوف والضغط */
+.contact:hover,
+.contact:active,
+.contact:focus {
+    background: linear-gradient(135deg, #d4af37, #f3e5ab) !important;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(212, 175, 55, 0.4) !important;
+}
+
+.contact:hover .contact-label,
+.contact:hover .contact-number,
+.contact:active .contact-label,
+.contact:active .contact-number,
+.contact:focus .contact-label,
+.contact:focus .contact-number {
+    color: #1a1a1a !important;
+}
+
+.contact:hover .contact-icon,
+.contact:active .contact-icon,
+.contact:focus .contact-icon {
+    background: rgba(0, 0, 0, 0.1) !important;
+    border-color: rgba(0, 0, 0, 0.2) !important;
+    color: #1a1a1a !important;
 }
 
 .contact-icon{
@@ -230,6 +253,7 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     border:1px solid rgba(255,255,255,.22);
     font-size:20px;
     position:relative;
+    transition: .3s ease;
 }
 
 .contact-text{
@@ -242,6 +266,7 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     font-size:11px;
     color:rgba(255,255,255,.80);
     margin-bottom:2px;
+    transition: .3s ease;
 }
 
 .contact-number{
@@ -249,15 +274,70 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     direction:ltr;
     font-size:13px;
     font-weight:800;
+    transition: .3s ease;
 }
 
-.footer{
+.footer-msg{
     text-align:center;
     color:#788896;
     font-size:11px;
     margin-top:18px;
+    margin-bottom:15px;
 }
 
+/* ----------------------------------------------------------- */
+/* تنسيقات الفوتر المضاف أسفل الصفحة */
+/* ----------------------------------------------------------- */
+footer {
+    text-align: center;
+    border-top: 1px dashed rgba(0, 0, 0, 0.1);
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+footer p {
+    font-size: 11px;
+    color: #666;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.footer-credits {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #777;
+}
+
+.footer-credits img {
+    height: 22px;
+    object-fit: contain;
+}
+
+.footer-btn {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: #1a1a1a;
+    color: #fff;
+    display: inline-grid;
+    place-items: center;
+    text-decoration: none;
+    font-size: 11px;
+    transition: all .3s ease;
+}
+
+.footer-btn:hover,
+.footer-btn:active,
+.footer-btn:focus {
+    background: linear-gradient(135deg, #d4af37, #f3e5ab) !important;
+    color: #1a1a1a !important;
+    transform: scale(1.15);
+}
+
+/* الأزرار العائمة */
 .floating{
     position:fixed;
     left:18px;
@@ -277,16 +357,22 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     border-radius:17px;
     font-size:20px;
     box-shadow:0 12px 26px rgba(0,0,0,.25);
-    transition:.25s;
+    transition:.3s;
 }
 
-.float:hover{transform:scale(1.08)}
 .float.wa{background:#b91420}
 .float.phone{background:#111111}
 
-/* ----------------------------------------------------------- */
-/* تصميم النافذة الترحيبية بالتوهج والأضراس المتحركة (Glow & Teeth) */
-/* ----------------------------------------------------------- */
+.float:hover,
+.float:active,
+.float:focus {
+    background: linear-gradient(135deg, #d4af37, #f3e5ab) !important;
+    color: #1a1a1a !important;
+    transform: scale(1.1);
+    box-shadow: 0 12px 26px rgba(212, 175, 55, 0.5) !important;
+}
+
+/* النافذة الترحيبية */
 .modal{
     position:fixed;
     inset:0;
@@ -320,7 +406,6 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
 
 .modal.show .modal-box{transform:scale(1) translateY(0)}
 
-/* التوهج الخلفي المتدرج */
 .glow-effect{
     position:absolute;
     top:-50px;
@@ -339,7 +424,6 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     100%{opacity:1; transform:translateX(-50%) scale(1.15);}
 }
 
-/* الأضراس المتحركة في الخلفية */
 .floating-tooth{
     position:absolute;
     color:rgba(255, 255, 255, 0.06);
@@ -362,7 +446,6 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     50%{ transform:translateY(12px) rotate(-15deg); }
 }
 
-/* حاوية الشعار مع توهج دائري */
 .modal-logo-wrapper{
     position:relative;
     width:110px;
@@ -415,7 +498,6 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     padding:0 8px;
 }
 
-/* زر دخول متوهج */
 .modal button{
     width:100%;
     border:none;
@@ -437,9 +519,19 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     gap:10px;
 }
 
-.modal button:hover{
-    transform:scale(1.02);
-    box-shadow: 0 0 30px rgba(213, 31, 43, 0.8);
+.modal button:hover,
+.modal button:active,
+.modal button:focus {
+    background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 100%) !important;
+    color: #1a1a1a !important;
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(212, 175, 55, 0.8) !important;
+}
+
+.modal button:hover i,
+.modal button:active i,
+.modal button:focus i {
+    color: #1a1a1a !important;
 }
 
 @media(max-width:480px){
@@ -459,10 +551,9 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
 
 <body>
 
-<!-- نافذة ترحيبية بتأثيرات توهج وأضراس متحركة -->
+<!-- النافذة الترحيبية -->
 <div id="welcomeModal" class="modal">
     <div class="modal-box">
-        <!-- التوهج والأشكال المتحركة -->
         <div class="glow-effect"></div>
         <i class="fa-solid fa-tooth floating-tooth tooth-1"></i>
         <i class="fa-solid fa-tooth floating-tooth tooth-2"></i>
@@ -535,7 +626,19 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
                 </a>
             </div>
 
-            <div class="footer">نحن هنا لخدمتكم والعناية بابتسامتكم</div>
+            <div class="footer-msg">نحن هنا لخدمتكم والعناية بابتسامتكم</div>
+
+            <!-- الكود المضاف أسفل عبارة نحن هنا لخدمتكم -->
+            <footer>
+                <p>&copy; جميع الحقوق محفوظة - مركز ابن سينا لطب جراحة الفم والاسنان</p>
+                <div class="footer-credits">
+                    <span>تصميم بواسطة</span>
+                    <img src="100.png" alt="شعار التصميم">
+                    <a href="tel:01010255123" class="footer-btn" title="اتصال هاتفي"><i class="fa-solid fa-phone"></i></a>
+                    <a href="https://wa.me/201010255123" target="_blank" class="footer-btn" title="مراسلة عبر الواتساب"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </footer>
+
         </div>
     </section>
 </main>
