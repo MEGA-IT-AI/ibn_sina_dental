@@ -284,9 +284,9 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
 .float.wa{background:#b91420}
 .float.phone{background:#111111}
 
-/* ---------------------------------------------------- */
-/* تصميم نافذة الترحيب الجديد (طابع أسنان احترافي) */
-/* ---------------------------------------------------- */
+/* ----------------------------------------------------------- */
+/* تصميم النافذة الترحيبية بالتوهج والأضراس المتحركة (Glow & Teeth) */
+/* ----------------------------------------------------------- */
 .modal{
     position:fixed;
     inset:0;
@@ -295,7 +295,7 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
     align-items:center;
     justify-content:center;
     padding:18px;
-    background:rgba(6, 28, 48, 0.78);
+    background:rgba(4, 15, 26, 0.82);
     backdrop-filter:blur(12px);
     opacity:0;
     visibility:hidden;
@@ -306,94 +306,140 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
 
 .modal-box{
     width:min(420px,100%);
-    background:linear-gradient(180deg, #ffffff 0%, #fcfbfb 100%);
+    background:#0d1821;
     border-radius:32px;
-    padding:35px 24px 28px;
+    padding:38px 24px 30px;
     text-align:center;
-    box-shadow:0 35px 80px rgba(0,0,0,.35), inset 0 0 0 1px rgba(159,17,27,.08);
-    transform:scale(.85) translateY(30px);
-    transition:.4s cubic-bezier(.175, .885, .32, 1.275);
     position:relative;
     overflow:hidden;
+    border:1px solid rgba(213, 31, 43, 0.35);
+    box-shadow: 0 0 50px rgba(213, 31, 43, 0.25), 0 20px 60px rgba(0,0,0,0.6);
+    transform:scale(.8) translateY(40px);
+    transition:.45s cubic-bezier(.175, .885, .32, 1.275);
 }
 
 .modal.show .modal-box{transform:scale(1) translateY(0)}
 
-/* إطار أيقونة الضرس التزيينية */
-.modal-tooth-badge{
-    width:90px;
-    height:90px;
-    margin:0 auto 15px;
-    background:linear-gradient(135deg, #fdebed 0%, #ffffff 100%);
-    border:2px solid rgba(159,17,27,.15);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+/* التوهج الخلفي المتدرج */
+.glow-effect{
+    position:absolute;
+    top:-50px;
+    left:50%;
+    transform:translateX(-50%);
+    width:220px;
+    height:220px;
+    background:radial-gradient(circle, rgba(213, 31, 43, 0.5) 0%, rgba(184, 137, 53, 0.2) 50%, transparent 70%);
+    filter:blur(40px);
+    pointer-events:none;
+    animation:pulseGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow{
+    0%{opacity:0.6; transform:translateX(-50%) scale(0.9);}
+    100%{opacity:1; transform:translateX(-50%) scale(1.15);}
+}
+
+/* الأضراس المتحركة في الخلفية */
+.floating-tooth{
+    position:absolute;
+    color:rgba(255, 255, 255, 0.06);
+    font-size:32px;
+    pointer-events:none;
+    z-index:1;
+}
+
+.tooth-1{ top:15px; left:20px; animation:floatTooth1 6s infinite ease-in-out; }
+.tooth-2{ bottom:25px; right:20px; animation:floatTooth2 7s infinite ease-in-out; }
+.tooth-3{ top:40%; right:15px; font-size:22px; animation:floatTooth1 5s infinite ease-in-out 1s; }
+
+@keyframes floatTooth1{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-12px) rotate(15deg); }
+}
+
+@keyframes floatTooth2{
+    0%,100%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(12px) rotate(-15deg); }
+}
+
+/* حاوية الشعار مع توهج دائري */
+.modal-logo-wrapper{
     position:relative;
-    box-shadow:0 10px 25px rgba(159,17,27,.12);
+    width:110px;
+    height:110px;
+    margin:0 auto 18px;
+    z-index:2;
+    display:grid;
+    place-items:center;
+}
+
+.modal-logo-wrapper::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    border:2px dashed rgba(213, 31, 43, 0.6);
+    animation:rotateBorder 12s linear infinite;
+}
+
+@keyframes rotateBorder{
+    100%{ transform:rotate(360deg); }
 }
 
 .modal-logo{
-    width:65px;
-    height:65px;
+    width:80px;
+    height:80px;
     object-fit:contain;
-    filter:drop-shadow(0 4px 8px rgba(0,0,0,.15));
-}
-
-.tooth-icon-bg{
-    position:absolute;
-    bottom:-4px;
-    right:-4px;
-    background:var(--red);
-    color:#fff;
-    width:28px;
-    height:28px;
-    border-radius:50%;
-    display:grid;
-    place-items:center;
-    font-size:13px;
-    box-shadow:0 4px 10px rgba(159,17,27,.3);
+    filter:drop-shadow(0 0 12px rgba(255, 255, 255, 0.4));
+    animation:logoFloat 3.5s ease-in-out infinite;
 }
 
 .modal h2{
-    color:var(--navy);
-    font-size:20px;
-    line-height:1.5;
+    color:#ffffff;
+    font-size:21px;
     font-weight:800;
+    line-height:1.5;
     margin-bottom:10px;
+    position:relative;
+    z-index:2;
+    text-shadow:0 2px 10px rgba(0,0,0,0.5);
 }
 
 .modal p{
-    color:var(--muted);
+    color:rgba(255, 255, 255, 0.78);
     font-size:13.5px;
     line-height:1.8;
-    margin-bottom:24px;
-    padding:0 10px;
+    margin-bottom:26px;
+    position:relative;
+    z-index:2;
+    padding:0 8px;
 }
 
+/* زر دخول متوهج */
 .modal button{
     width:100%;
-    border:0;
+    border:none;
     border-radius:18px;
     padding:14px;
-    color:white;
-    background:linear-gradient(135deg, #111111 0%, #9f111b 100%);
+    color:#fff;
+    background:linear-gradient(135deg, #d51f2b 0%, #9f111b 100%);
     font-family:inherit;
     font-size:15px;
     font-weight:800;
     cursor:pointer;
-    box-shadow:0 10px 25px rgba(159,17,27,.28);
+    position:relative;
+    z-index:2;
+    box-shadow: 0 0 20px rgba(213, 31, 43, 0.5);
     transition:all .3s ease;
     display:flex;
     align-items:center;
     justify-content:center;
-    gap:8px;
+    gap:10px;
 }
 
 .modal button:hover{
-    transform:translateY(-2px);
-    box-shadow:0 14px 30px rgba(159,17,27,.38);
+    transform:scale(1.02);
+    box-shadow: 0 0 30px rgba(213, 31, 43, 0.8);
 }
 
 @media(max-width:480px){
@@ -413,15 +459,22 @@ body:after{width:650px;height:650px;bottom:-470px;right:-300px}
 
 <body>
 
-<!-- نافذة الترحيب بتصميم طبع الأسنان -->
+<!-- نافذة ترحيبية بتأثيرات توهج وأضراس متحركة -->
 <div id="welcomeModal" class="modal">
     <div class="modal-box">
-        <div class="modal-tooth-badge">
+        <!-- التوهج والأشكال المتحركة -->
+        <div class="glow-effect"></div>
+        <i class="fa-solid fa-tooth floating-tooth tooth-1"></i>
+        <i class="fa-solid fa-tooth floating-tooth tooth-2"></i>
+        <i class="fa-solid fa-tooth floating-tooth tooth-3"></i>
+
+        <div class="modal-logo-wrapper">
             <img src="10.png" alt="شعار مركز ابن سينا لطب الأسنان" class="modal-logo">
-            <span class="tooth-icon-bg"><i class="fa-solid fa-tooth"></i></span>
         </div>
+
         <h2>أهلاً بك في مركز ابن سينا</h2>
         <p>نحرص على تقديم أحدث رعاية طبية لطب وجراحة الأسنان لابتسامة صحية ومشرقة.</p>
+
         <button id="closeModalBtn">
             <span>مرحباً، ابدأ التصفح</span>
             <i class="fa-solid fa-sparkles"></i>
